@@ -241,7 +241,7 @@ def room(db) :
 
 def reservation(db) :
     while True :
-        print("\nTable Discount selected.") 
+        print("\nTable Reservation selected.") 
         user_choice = input("\nChoose an action in CRUD (C,R,U,D) / enter 0 to back to main menu : ")
 
         match user_choice :
@@ -311,7 +311,7 @@ def reservation(db) :
 
 def discount(db) :
     while True :
-        print("\nDiscount Hotel selected.") 
+        print("\nDiscount Discount selected.") 
         user_choice = input("\nChoose an action in CRUD (C,R,U,D) / enter 0 to back to main menu : ")
 
         match user_choice :
@@ -381,7 +381,7 @@ def discount(db) :
 
 def payment(db) :
     while True :
-        print("\nTable Hotel selected.") 
+        print("\nTable Payment selected.") 
         user_choice = input("\nChoose an action in CRUD (C,R,U,D) / enter 0 to back to main menu : ")
 
         match user_choice :
@@ -455,28 +455,38 @@ def payment(db) :
 
 def review(db) :
     while True :
-        print("\nTable Hotel selected.") 
+        print("\nTable Review selected.") 
         user_choice = input("\nChoose an action in CRUD (C,R,U,D) / enter 0 to back to main menu : ")
 
         match user_choice :
             case "C" :
                 while True : 
                     print("\nEnter the required attributes to create new review!")
-                    comment, rating, review_date,  = '','',''
+                    user_id, hotel_id, comment, rating, review_date,  = '', '', '', '', ''
                     is_empty = False 
                     for i in range(1,6) :
                         match i :
                             case 1 :
+                                user_id = int(input("\nuser_id : ")) 
+                                if user_id == 0 or user_id == '':
+                                    is_empty = True 
+                                    break 
+                            case 2 :
+                                hotel_id = int(input("\nhotel_id : ")) 
+                                if hotel_id == 0 or hotel_id == '':
+                                    is_empty = True 
+                                    break 
+                            case 3 :
                                 comment = input("\ncomment : ") 
                                 if comment == "0" or comment == '':
                                     is_empty = True 
                                     break  
-                            case 2 :
-                                rating = input("\nrating : ")
-                                if rating == "0" or rating == '':
+                            case 4 :
+                                rating = int(input("\nrating : "))
+                                if rating == 0 or rating == '':
                                     is_empty = True
                                     break
-                            case 3 : 
+                            case 5 : 
                                 review_date = input("\nreview_date : ")
                                 if review_date == "0" or review_date == '':
                                     is_empty = True
@@ -484,7 +494,7 @@ def review(db) :
                     
                     if is_empty :
                         break 
-                    new_review = create_review(db=db, comment=comment, rating=rating, review_date=review_date) 
+                    new_review = create_review(db=db, user_id=user_id, hotel_id=hotel_id, comment=comment, rating=rating, review_date=review_date) 
  
                     if new_review == None : 
                         continue     
