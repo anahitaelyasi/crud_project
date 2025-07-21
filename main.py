@@ -263,7 +263,7 @@ def reservation(db) :
                                     is_empty = True
                                     break
                             case 3 : 
-                                checkOut_date = input("\checkOut_date : ")
+                                checkOut_date = input("\ncheckOut_date : ")
                                 if checkOut_date == "0" or checkOut_date == '':
                                     is_empty = True
                                     break
